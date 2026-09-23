@@ -1,0 +1,44 @@
+# Installed dependencies and package caches
+node_modules/
+.npm-cache/
+
+# Generated Next.js output and TypeScript cache
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local environment settings (keep the documented example)
+.env*
+!.env.example
+
+# Local agent tools and installed design skills
+/.agents/
+/.codex/
+/skills-lock.json
+
+# Local hosting tools and previous preview configuration
+/.openai/
+.sites-runtime/
+.vercel/
+.wrangler/
+.dev.vars*
+
+# Test output, logs, and temporary files
+coverage/
+playwright-report/
+test-results/
+*.log
+data/*.tmp
+/tmp/
+/temp/
+
+# Machine-specific editor and operating-system files
+.idea/
+.vs/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

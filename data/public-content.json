@@ -1,0 +1,97 @@
+{
+  "repositories": [
+    {
+      "id": 1383608373,
+      "name": "Ananuri.SlotEngine",
+      "html_url": "https://github.com/bsokur/Ananuri.SlotEngine",
+      "description": "Deterministic .NET slot engine with configurable paylines, cascades, wilds, scatters, free spins, and multipliers, plus simulation tools and replay verification.",
+      "language": "C#",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-09-23T16:32:26Z"
+    },
+    {
+      "id": 780603612,
+      "name": "sweeftQuiz",
+      "html_url": "https://github.com/bsokur/sweeftQuiz",
+      "description": null,
+      "language": "TypeScript",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2024-04-23T18:08:29Z"
+    },
+    {
+      "id": 701513656,
+      "name": "vallut",
+      "html_url": "https://github.com/bsokur/vallut",
+      "description": "Vallut is an application built on React Native, that tells you latest currency exchange rates from NBG",
+      "language": "Java",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2023-10-06T20:00:08Z"
+    },
+    {
+      "id": 617022736,
+      "name": "MealsAPP",
+      "html_url": "https://github.com/bsokur/MealsAPP",
+      "description": null,
+      "language": "JavaScript",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2023-03-23T19:07:08Z"
+    },
+    {
+      "id": 610840160,
+      "name": "WignakiAPP",
+      "html_url": "https://github.com/bsokur/WignakiAPP",
+      "description": "Simple React Native Application used to find the definition of any english word.",
+      "language": "JavaScript",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2023-03-14T13:31:14Z"
+    },
+    {
+      "id": 581312370,
+      "name": "RN-Number-Guesser",
+      "html_url": "https://github.com/bsokur/RN-Number-Guesser",
+      "description": null,
+      "language": "JavaScript",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2022-12-22T21:02:39Z"
+    },
+    {
+      "id": 581293037,
+      "name": "RN-ToDo-simple-project",
+      "html_url": "https://github.com/bsokur/RN-ToDo-simple-project",
+      "description": null,
+      "language": "JavaScript",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2022-12-22T20:50:44Z"
+    }
+  ],
+  "articles": [
+    {
+      "id": 4696556,
+      "title": "Why 96% RTP Doesn't Protect Your Bankroll: Simulating Gambler's Ruin",
+      "url": "https://dev.to/bsokur/why-96-rtp-doesnt-protect-your-bankroll-simulating-gamblers-ruin-4508",
+      "description": "Why 96% RTP Doesn\u2019t Protect Your Bankroll: Simulating Gambler\u2019s Ruin   While working on my...",
+      "published_at": "2026-09-23T15:28:19Z",
+      "reading_time_minutes": 7,
+      "tag_list": [
+        "gamedev",
+        "programming",
+        "softwaredevelopment"
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-23T16:47:55.075927+00:00"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "beka-sokurashvili-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "next build --webpack",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "test": "tsx --test tests/feeds.test.ts tests/refresh-content.test.ts tests/site.test.ts tests/feed-state.test.ts",
+    "check": "npm run lint && npm test && npm run typecheck && npm run build",
+    "refresh-content": "tsx scripts/refresh-content.ts",
+    "optimize-portrait": "node scripts/optimize-portrait.mjs"
+  },
+  "engines": {
+    "node": ">=24.11.0"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.6",
+    "sharp": "^0.35.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
