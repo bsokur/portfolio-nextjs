@@ -54,24 +54,36 @@ If you change usernames in `lib/profile.ts`, refresh the snapshot before buildin
 
 The original `assets/portrait.png` is the editable source. Run `npm run optimize-portrait` after replacing it to generate 192, 320, 416, and 624 px WebP variants in `public/images/`. The homepage uses these static variants through a custom Next Image loader; no runtime image service is needed. Keep the widths in `next.config.ts`, `lib/portrait-loader.ts`, and the optimization script aligned. The current variants range from 5.7 KB to 47.4 KB.
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-This project uses Next.js static export. No Worker, server runtime, or Next.js adapter is required.
+The site uses Next.js static export and Workers Static Assets. `wrangler.jsonc` publishes only `out/`, preserves trailing-slash URLs, and serves the exported `404.html` for missing pages. No server-side Next.js adapter or Worker script is needed. Wrangler is pinned in the development dependencies and lockfile.
 
-For a manual upload:
+### GitHub deployment
 
-1. Run `npm run check`.
-2. In Cloudflare, open **Workers & Pages**, choose **Create application**, then **Get started** under Pages and **Drag and drop your files**.
-3. Upload the contents of `out/` as your site. Do not upload the project root, `node_modules`, source files, or `.next`.
-4. In the Pages project's **Custom domains** settings, add `bsokur.dev` and follow Cloudflare's DNS instructions.
+1. Commit and push `wrangler.jsonc`, `package.json`, and `package-lock.json` together, along with any other source changes.
+2. In Cloudflare, open **Workers & Pages > Create application > Continue with GitHub** and select `bsokur/portfolio-nextjs`.
+3. Set the project name to **bsokur-dev**, matching `name` in `wrangler.jsonc`.
+4. Use production branch **main**, build command **npm run build**, deploy command **npx wrangler deploy**, and preview command **npx wrangler preview**. Leave the root directory at the repository root. There is no output-directory form field: the Wrangler configuration specifies `out/`.
+5. Use Node.js 24 (`.nvmrc`) and optionally set the build variable `SITE_URL=https://bsokur.dev`. This is already the default origin in the source.
+6. Select **Deploy**. Subsequent pushes to the production branch trigger builds and deployments.
+7. Open the deployed Worker, then **Settings > Domains & Routes > Add > Custom Domain**, and add `bsokur.dev`. The domain must be an active Cloudflare zone in the same account. Cloudflare provisions its DNS record and certificate.
 
-For Git-based builds, select **Next.js (Static HTML Export)**, set the build command to `npm run build`, and the build output directory to `out`. Use Node.js 24.11 or later (`NODE_VERSION=24.11.0` if setting it explicitly).
+The GitHub Actions workflow validates the app; Cloudflare's GitHub integration handles deployment separately. No Cloudflare token needs to be committed to this repository.
 
-The default public origin is `https://bsokur.dev`. To use another domain, set `SITE_URL` in the build environment; see `.env.example`. Rebuild after changing the domain because canonical URLs, social metadata, `robots.txt`, and `sitemap.xml` are generated at build time. Cloudflare Pages uses the exported top-level `404.html` for missing pages.
+### Local verification and deployment
 
-Only `out/` is deployable output. Keep `assets/portrait.png` for future image changes; the original is outside `public/` and is not included in uploads. Dependencies, caches, and generated files are ignored by Git. Tests, CI, and the bundled font license remain part of the maintained project.
+```sh
+npm ci
+npm run check
+npm run deploy:check
+npm run preview:cloudflare
+```
 
-See [Cloudflare's static Next.js guide](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/) and [Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/). Choose manual upload or Git integration when creating the project; switching later requires a new Pages project.
+`deploy:check` validates packaging without publishing. `preview:cloudflare` serves the already-built export locally through Wrangler. Rebuild after editing the site. To publish manually, authenticate with `npx wrangler login`, then run `npm run build` and `npm run deploy`.
+
+Canonical URLs, social metadata, robots.txt, and sitemap.xml are generated at build time. Rebuild after changing the public domain. The original `assets/portrait.png`, source files, tests, and local configuration are not deployed; only `out/` is uploaded. `.wrangler/` and local secrets are excluded by `.gitignore`.
+
+See [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/get-started/) and [Workers Builds configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/).
 
 ## Accessibility
 

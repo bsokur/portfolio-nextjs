@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "next build --webpack",
+    "deploy": "wrangler deploy",
+    "preview:cloudflare": "wrangler dev",
+    "deploy:check": "wrangler deploy --dry-run",
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
     "test": "tsx --test tests/feeds.test.ts tests/refresh-content.test.ts tests/site.test.ts tests/feed-state.test.ts",
@@ -29,6 +32,7 @@
     "eslint-config-next": "^16.3.6",
     "sharp": "^0.35.4",
     "tsx": "^4.23.15",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "4.137.0"
   }
 }
