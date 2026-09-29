@@ -15,12 +15,12 @@ const details = {
 
 export const profile = {
   ...details,
-  initials: details.name.split(/\s+/).map((part) => part[0]).join('').toLowerCase(),
+  initials: details.name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join('')
+    .toLowerCase(),
   phoneHref: `tel:${details.phone.replace(/[^+\d]/g, '')}`,
   github: `https://github.com/${encodeURIComponent(details.githubUsername)}`,
   dev: `https://dev.to/${encodeURIComponent(details.devUsername)}`,
-};
-
-export const articleDescriptions: Record<number, string> = {
-  4696556: 'Exploring return to player, finite bankrolls, and why even a fair game can end in ruin — with an interactive simulation.',
 };
