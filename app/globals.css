@@ -1,24 +1,56 @@
-/* One shared progress value keeps every palette color and theme icon synchronized. */
-@property --theme-progress {
-  syntax: '<number>';
+/* Animate palette colors once; descendants inherit the current frame. */
+@property --background {
+  syntax: '<color>';
   inherits: true;
-  initial-value: 0;
+  initial-value: #ffffff;
+}
+@property --foreground {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1c2027;
+}
+@property --muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #626974;
+}
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #315dde;
+}
+@property --on-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ffffff;
+}
+@property --line {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e5e7ec;
+}
+@property --soft {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f6f8fc;
 }
 
 :root {
   color-scheme: light dark;
-  --theme-progress: 0;
-  --theme-dark-weight: calc(var(--theme-progress) * 100%);
-  --background: color-mix(in srgb, #ffffff, #17191d var(--theme-dark-weight));
-  --foreground: color-mix(in srgb, #1c2027, #f2f4f8 var(--theme-dark-weight));
-  --muted: color-mix(in srgb, #626974, #b6bdc8 var(--theme-dark-weight));
-  --accent: color-mix(in srgb, #315dde, #94adff var(--theme-dark-weight));
-  --on-accent: color-mix(in srgb, #ffffff, #17191d var(--theme-dark-weight));
-  --line: color-mix(in srgb, #e5e7ec, #3f4652 var(--theme-dark-weight));
-  --soft: color-mix(in srgb, #f6f8fc, #20242b var(--theme-dark-weight));
-  --selection-background: color-mix(in srgb, #dce5ff, #94adff var(--theme-dark-weight));
-  --selection-foreground: color-mix(in srgb, #102050, #17191d var(--theme-dark-weight));
-  --theme-transition-duration: 220ms;
+  --theme-icon-sun-opacity: 0;
+  --background: light-dark(#ffffff, #17191d);
+  --foreground: light-dark(#1c2027, #f2f4f8);
+  --muted: light-dark(#626974, #b6bdc8);
+  --accent: light-dark(#315dde, #94adff);
+  --on-accent: light-dark(#ffffff, #17191d);
+  --line: light-dark(#e5e7ec, #3f4652);
+  --soft: light-dark(#f6f8fc, #20242b);
+  --selection-background: light-dark(#dce5ff, #94adff);
+  --selection-foreground: light-dark(#102050, #17191d);
+  --theme-transition-duration: 0ms;
+  transition-property: --background, --foreground, --muted, --accent, --on-accent, --line, --soft;
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: ease-in-out;
   --font-sans: var(--font-geist), system-ui, -apple-system, Arial, sans-serif;
   --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 }
@@ -29,12 +61,12 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --theme-progress: 1;
+  --theme-icon-sun-opacity: 1;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --theme-progress: 1;
+    --theme-icon-sun-opacity: 1;
   }
 }
 
@@ -54,11 +86,15 @@
 .theme-toggle:hover {
   background: var(--soft);
 }
+.theme-icon-sun,
+.theme-icon-moon {
+  transition: opacity var(--theme-transition-duration) ease-in-out;
+}
 .theme-icon-sun {
-  opacity: var(--theme-progress);
+  opacity: var(--theme-icon-sun-opacity);
 }
 .theme-icon-moon {
-  opacity: calc(1 - var(--theme-progress));
+  opacity: calc(1 - var(--theme-icon-sun-opacity));
 }
 
 * {
@@ -461,6 +497,7 @@ h2 {
   margin: 0;
 }
 .feed-retry-button {
+  color: var(--foreground);
   cursor: pointer;
   background: var(--soft);
   border: 1px solid var(--line);
@@ -622,8 +659,8 @@ h2 {
 }
 @media (prefers-contrast: more) {
   :root {
-    --muted: color-mix(in srgb, #303641, #e0e4ec var(--theme-dark-weight));
-    --line: color-mix(in srgb, #626974, #a0a8b5 var(--theme-dark-weight));
+    --muted: light-dark(#303641, #e0e4ec);
+    --line: light-dark(#626974, #a0a8b5);
   }
   a:focus-visible,
   button:focus-visible {
@@ -643,7 +680,7 @@ h2 {
 }
 @media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
   :root {
-    transition: --theme-progress var(--theme-transition-duration) ease-in-out;
+    --theme-transition-duration: 220ms;
   }
 }
 @media (prefers-reduced-motion: reduce) {
