@@ -11,9 +11,8 @@
     "deploy:check": "wrangler deploy --dry-run",
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
-    "test": "tsx --test tests/feeds.test.ts tests/refresh-content.test.ts tests/site.test.ts tests/feed-state.test.ts",
+    "test": "tsx --test tests/feeds.test.ts tests/site.test.ts tests/live-feed.test.ts",
     "check": "npm run lint && npm test && npm run typecheck && npm run build",
-    "refresh-content": "tsx scripts/refresh-content.ts",
     "optimize-portrait": "node scripts/optimize-portrait.mjs"
   },
   "engines": {
