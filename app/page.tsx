@@ -40,11 +40,18 @@ export default function Home() {
             </div>
             <Portrait alt={`Portrait of ${profile.name}`} />
             <p className="bio">{profile.bio}</p>
-            <ul className="technologies" aria-label="Main technologies">
-              {profile.technologies.map((technology) => (
-                <li key={technology}>{technology}</li>
-              ))}
-            </ul>
+            <div className="intro-skills">
+              <ul className="technologies" aria-label="Main technologies">
+                {profile.technologies.map((technology) => (
+                  <li key={technology}>{technology}</li>
+                ))}
+              </ul>
+              <ul className="capabilities" aria-label="Backend capabilities">
+                {profile.capabilities.map((capability) => (
+                  <li key={capability}>{capability}</li>
+                ))}
+              </ul>
+            </div>
             <div className="intro-actions">
               <a className="primary-link" href="#projects">
                 View projects <span aria-hidden="true">↓</span>
