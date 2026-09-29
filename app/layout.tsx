@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { ThemeProvider } from '@/components/theme-provider';
 import { profile } from '@/lib/profile';
 import { siteDescription, siteTitle, siteUrl } from '@/lib/site';
 import './globals.css';
@@ -30,8 +31,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={geist.variable} data-scroll-behavior="smooth">
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={geist.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

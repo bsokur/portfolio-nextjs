@@ -3,6 +3,7 @@ import { ArticleFeed } from '@/components/content-feeds';
 import { ArrowIcon, MailIcon } from '@/components/icons';
 import { Portrait } from '@/components/portrait';
 import { RepositoryFeed } from '@/components/repository-feed';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { profile } from '@/lib/profile';
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function Home() {
             <a href="#writing">Writing</a>
             <a href={`mailto:${profile.email}`}>Email me</a>
           </nav>
+          <ThemeToggle />
         </header>
         <main id="main" tabIndex={-1}>
           <section className="intro" aria-labelledby="name">
