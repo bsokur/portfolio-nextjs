@@ -18,7 +18,8 @@ export default function Home() {
       </a>
       <div className="site-shell">
         <header className="site-header">
-          <a className="wordmark" href="#main" aria-label={`bsokur.dev — ${profile.name}, home`}>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- The logo intentionally reloads the page. */}
+          <a className="wordmark" href="/" aria-label={`bsokur.dev — ${profile.name}, home`}>
             bsokur<span>.</span>dev
           </a>
           <nav aria-label="Main navigation">
