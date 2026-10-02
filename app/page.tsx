@@ -18,7 +18,7 @@ export default function Home() {
       </a>
       <div className="site-shell">
         <header className="site-header">
-          <a className="wordmark" href="#main" aria-label={`bsokur.dev — ${profile.name}, home`}>
+          <a className="wordmark" href="/" aria-label={`bsokur.dev — ${profile.name}, home`}>
             bsokur<span>.</span>dev
           </a>
           <nav aria-label="Main navigation">
