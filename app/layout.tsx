@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/theme-provider';
 import { profile } from '@/lib/profile';
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <GoogleAnalytics gaId="G-2CFF74RNXD" />
       </body>
     </html>
   );

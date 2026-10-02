@@ -11,6 +11,15 @@ npm ci
 npm run dev
 ```
 
+If CI reports missing optional dependencies in `package-lock.json` after a local dependency update, regenerate the lockfile with the following toolchain and commit the result:
+
+```sh
+npx --yes --package=node@24 --package=npm@12.1.0 npm install --package-lock-only --ignore-scripts
+npx --yes --package=node@24 --package=npm@12.1.0 npm ci --dry-run --ignore-scripts --os=linux --cpu=x64
+```
+
+The second command validates the Linux install plan without replacing local dependencies. Keep `npm ci` in CI so incomplete lockfiles fail validation.
+
 Visit http://localhost:4173. You can choose another port with `npm run dev -- --port 3000`.
 
 ## Build
